@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guild Joiner - MR KAlpha Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 480px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .card {
+            border: none;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .card-header {
+            background: #ffffff;
+            border-bottom: 1px solid #f1f1f1;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+        .app-icon {
+            font-size: 42px;
+            color: #6366f1; /* Indigo color */
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 6px rgba(99, 102, 241, 0.3));
+        }
+        .card-header h3 {
+            font-weight: 800;
+            font-size: 24px;
+            margin: 0;
+            color: #1e293b;
+        }
+        .form-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+        .form-control, .form-select {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            height: 50px;
+            border-radius: 14px;
+            padding-left: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #fff;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            color: #0f172a;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            height: 54px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            width: 100%;
+            border: none;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        /* Social Media Section */
+        .social-area {
+            text-align: center;
+            margin-top: 25px;
+            border-top: 1px solid #f1f1f1;
+            padding-top: 20px;
+        }
+        .social-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            color: #fff;
+        }
+        /* Specific Colors */
+        .yt { background: #ff0000; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2); }
+        .dc { background: #5865F2; box-shadow: 0 4px 10px rgba(88, 101, 242, 0.2); }
+        .tg { background: #0088cc; box-shadow: 0 4px 10px rgba(0, 136, 204, 0.2); }
+        .ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        .alert { border-radius: 14px; font-size: 14px; border: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="app-icon"><i class="bi bi-shield-lock-fill"></i></div>
+            <h3>Guild Joiner</h3>
+            <p class="text-muted mb-0" style="font-size: 13px;">Fast & Secure Request Tool</p>
+        </div>
+
+        <div class="card-body p-4">
+            
+            {% if message %}
+            <div class="alert alert-{{ status }} d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                <div>
+                    <strong>{{ message }}</strong>
+                    {% if detailed_msg %}
+                    <div class="mt-1" style="font-size: 12px; opacity: 0.8;">{{ detailed_msg }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Select Server</label>
+                    <select name="region" class="form-select">
+                        <option value="others">🌍 Global / Other Servers</option>
+                        <option value="india">🇮🇳 India Server</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Your UID</label>
+                    <input type="number" name="uid" class="form-control" placeholder="12345678" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="text" name="password" class="form-control" placeholder="Account Password" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Guild ID</label>
+                    <input type="number" name="clan_id" class="form-control" placeholder="Target Guild ID" required>
+                </div>
+
+                <button type="submit" class="btn btn-submit">
+                    Send Request <i class="bi bi-rocket-takeoff-fill ms-2"></i>
+                </button>
+            </form>
+
+            <div class="social-area">
+                <span class="social-label">Follow Us On</span>
+                <div class="social-icons">
+                    <a href="https://youtube.com/@mr_kalpha" target="_blank" class="social-btn yt">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://discord.gg/DXXQF32dft" target="_blank" class="social-btn dc">
+                        <i class="bi bi-discord"></i>
+                    </a>
+                    <a href="https://t.me/freefireproxyserver" target="_blank" class="social-btn tg">
+                        <i class="bi bi-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/mrkuddusofficial" target="_blank" class="social-btn ig">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-text">
+        &copy; 2026 <strong>MR KAlpha Team</strong>. All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
